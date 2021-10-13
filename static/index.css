@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap");
+
+.body {
+  margin: 0px;
+}
+
+#navbar {
+  background-color: #6dbf59;
+  top: 0;
+  position: sticky;
+  z-index: 1;
+}
+
+/* Style the header links */
+#navbar a {
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.logo img {
+  width: 300px;
+  padding-right: 30px;
+}
+
+/* Change the background color on mouse-over */
+.header-left a:hover {
+  background-color: darkblue;
+}
+
+/* Float the link section to the right */
+.header-left {
+  float: left;
+}
+
+.bannerHero {
+  background-image: url(/images/bannerHero/HeroBanner-1.jpg);
+  background-size: cover;
+
+  height: 400px;
+}
+
+.ontheMenuHero {
+  background-image: url(/images/bannerHero/OntheMenu-hero-1.jpg);
+  background-size: cover;
+  height: 200px;
+}
+
+.HeroText {
+  margin: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  color: darkblue;
+  text-shadow: white 6px 6px;
+  padding: 75px 100px;
+}
+
+.textbox,
+.top-meals,
+.featuresSection {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+  padding: 40px 150px;
+  color: #3f5243;
+
+  background-color: rgb(251, 251, 251);
+}
+
+.top-meals h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+.featuresSection {
+  background-color: white;
+}
+
+.feature-title {
+  font-size: 1.35rem;
+}
+table {
+  display: block ruby;
+}
+
+.feature {
+  display: inline-block;
+  text-align: left;
+  font-size: 15px !important;
+  height: 150px;
+  margin: 14px;
+}
+
+.feature img {
+  width: 200px;
+  padding-bottom: 30px;
+}
+
+.meal {
+  text-align: left;
+  font-size: 15px;
+  width: 400px;
+  height: 380px;
+  display: inline-block;
+  background-color: white;
+  margin-top: 30px;
+  box-shadow: 5px 5px 13px lightgray;
+  vertical-align: top;
+}
+.meal img {
+  width: 400px;
+}
+
+.meal-title {
+  height: 40px;
+}
+.meal-title,
+.meal-price {
+  font-weight: bold;
+  padding: 20px;
+}
+
+.meal-description {
+  padding-left: 20px;
+}
+
+.meal-price {
+  font-size: 17px;
+  color: #737373;
+}
+
+.footer-menu {
+  float: left;
+  color: white;
+  text-align: left;
+  line-height: 17px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 15px;
+  display: block ruby;
+  font-family: "Montserrat", sans-serif;
+}
+li {
+  color: #999999;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: bold;
+  padding: 5px 0px 5px 75px;
+  cursor: pointer;
+  transition: 0.2s;
+  list-style: none;
+  padding-right: 5px !important;
+  text-decoration: none;
+}
+footer {
+  background-color: #3f5443;
+  margin: 30px 100px;
+}
+
+.footer-menu a {
+  color: #3f5243;
+  text-decoration: none;
+}
+
+footer p {
+  color: black;
+}
+
+#copyright-desk {
+  background-color: white;
+  display: block ruby;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  padding: 0px 86px;
+}
+
+#copyright-mobile {
+  display: none;
+}
+
+.menu-mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 100px;
+  }
+
+  .header-left {
+    display: none;
+  }
+
+  .logo img {
+    width: 250px;
+    padding-right: 0px;
+  }
+
+  .menu-mobile {
+    text-align: center;
+    padding: 15px 0px;
+    display: grid;
+    background-color: black;
+  }
+
+  .menu-mobile a {
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 2px;
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .HeroText {
+    font-size: 24px;
+    text-align: center;
+    text-shadow: white 4px 4px;
+    padding: 50px 40px;
+  }
+
+  .bannerHero {
+    background-image: url(/images/bannerHero/HeroBanner-1-mobile.jpg);
+    background-size: cover;
+    height: 700px;
+  }
+
+  .ontheMenuHero {
+    background-image: url(/images/bannerHero/OntheMenu-hero-1-mobile.jpg);
+    background-size: cover;
+    height: 350px;
+  }
+  .featuresSection,
+  .textbox,
+  .top-meals {
+    font-size: 17px;
+    padding: 30px 50px;
+  }
+
+  .meal {
+    margin-top: 25px;
+    width: 300px;
+    text-align: center;
+  }
+  .meal img {
+    width: 300px;
+  }
+  .meal-description {
+    padding: 10px;
+  }
+  .feature {
+    padding-top: 40px;
+    text-align: center;
+  }
+
+  .feature img {
+    padding-bottom: 20px;
+  }
+
+  .footer-menu {
+    display: block;
+    text-align: center;
+  }
+  footer {
+    margin: 30px 0px;
+  }
+
+  li,
+  .footer-list {
+    padding: 5px 5px 5px 5px;
+  }
+
+  #copyright-desk {
+    display: none;
+  }
+  #copyright-mobile {
+    padding: 17px;
+    font-size: 12px;
+    background-color: white;
+    display: block ruby;
+    font-weight: bold;
+    text-align: left;
+  }
+}

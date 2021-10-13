@@ -1,0 +1,18 @@
+<div class="top-meals" style="padding-bottom: 62px;">
+        <h2 style="padding-bottom: 60px;">Top Meals</h2>
+        <div class="container">
+          <div class="row">
+             {{#each topMeals}}
+            <div class="col-12 col-sm-6">
+              <div class="meal">
+                <img src="/images/meals/{{imgURL}}" alt="{{title}}">
+                <p class="meal-title">{{title}}</p>
+                <p class="meal-description">{{description}}</p>
+                <p class="meal-price">${{price}}</p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        </div>
+        
