@@ -38,37 +38,18 @@ app.use(express.static("static"));
 
 // });
 
+//Import Controller
 
-app.get("/", (req, res) => {
-    res.render("home",{
-        topMeals: mealModel.getTopMeals(),
-       
-    });
-});
+const mealsController = require("./controllers/forms");
+const formsController = require("./controllers/meals");
+
+
+app.use("/",mealsController);
+app.use("/", formsController);
+
 
 //Internal pages route configuration
 
-app.get("/on-the-menu", (req, res) => {
-    res.render("onTheMenu",{
-        mealCategories: mealModel.getAllMeals(),
-   
-    });
-
-});
-
-app.get("/registration", (req, res) => {
-    res.render("registration",{
-   
-    });
-
-});
-
-app.get("/login", (req, res) => {
-    res.render("login",{
-    
-    });
-
-});
 
 app.get("/headers", (req, res) => {
     const headers = req.headers;
