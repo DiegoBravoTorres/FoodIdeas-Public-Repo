@@ -13,11 +13,12 @@
 
 const path = require("path");
 
-const mealModel = require("./models/mealsList");
+//const mealModel = require("./models/mealsList");
 
 // Include ExpressJS in our project
 const express = require("express");
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -27,6 +28,10 @@ app.engine('.hbs', exphbs({
 }));
 
 app.set('view engine','.hbs');
+
+// Configure Body Parser
+app.use(bodyParser.urlencoded({ extended:false}));
+
 
 // Setup a folder that contains static resources.
 app.use(express.static("static"));
@@ -38,11 +43,12 @@ app.use(express.static("static"));
 
 // });
 
+
+
 //Import Controller
 
 const mealsController = require("./controllers/forms");
 const formsController = require("./controllers/meals");
-
 
 app.use("/",mealsController);
 app.use("/", formsController);
@@ -79,7 +85,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 1290;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {

@@ -9,8 +9,10 @@
   "author": "Diego Bravo Torres",
   "license": "ISC",
   "dependencies": {
+    "body": "^5.1.0",
     "bootstrap": "^5.1.1",
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.4"
+    "express-handlebars": "^5.3.4",
+    "parser": "^0.1.4"
   }
 }
