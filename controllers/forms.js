@@ -22,11 +22,18 @@ router.post("/registration", (req,res) =>{
     let allGood = true;
 
     if (typeof firstName !== 'string'|| firstName.trim().length === 0)
-    {
-        allGood = false;
-    }
+        {allGood = false;}
 
-    if(allGood)
+    if (typeof lastName !== 'string'|| lastName.trim().length === 0)
+        {allGood = false;}
+    
+    if (typeof inputEmail !== 'string'|| inputEmail.trim().length === 0)
+        {allGood = false;}
+    
+    if (typeof inputPassword !== 'string'|| inputPassword.trim().length === 0)
+        {allGood = false;}
+
+    if (allGood)
     {
         res.send("All good!")
     }
