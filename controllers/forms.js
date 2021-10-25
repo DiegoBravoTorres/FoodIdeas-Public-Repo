@@ -131,9 +131,14 @@ router.post("/registration", (req,res) =>{
         const message ={
             to : inputEmail,
             from : 'dbravo-torres@myseneca.ca',
-            subject: 'Form Submission',
-            html: `Visitor name : ${firstName} ${lastName}`
-
+            subject: 'Welcome to Food Ideas',
+            html: `<p style="font-size: 15px;">Hello <strong>${firstName} ${lastName} </strong><p>
+            <h2>Thank you for joining our service and welcome to Food Ideas</h2>
+            <img style="width: 600px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="ideas">
+            <p style="font-size: 15px;">My name is Diego Bravo and I'll be you support provider in case you need any help. <br>
+             Please go to our <a href="https://web322-diego.herokuapp.com/">website</a> to start enjoying our service</p>`
+            
+            
         }
 
         sgMail.send(message)
