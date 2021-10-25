@@ -17,6 +17,12 @@ input {
   padding-bottom: 30px;
 }
 
+.error {
+  font-size: 13px;
+  font-weight: bold;
+  color: red;
+}
+
 @media (max-width: 600px) {
   .form-signin {
     margin: 0px;
