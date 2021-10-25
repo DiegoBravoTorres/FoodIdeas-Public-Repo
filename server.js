@@ -67,7 +67,6 @@ app.get("/headers", (req, res) => {
 });
 
 
-
 // *** THE FOLLOWING CODE SHOULD APPEAR IN YOUR ASSIGNMENT AS IS (WITHOUT MODIFICATION) ***
 
 // This use() will not allow requests to go beyond it
@@ -88,7 +87,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 3099;
+const HTTP_PORT = process.env.PORT || 3096;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {

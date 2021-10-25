@@ -23,6 +23,11 @@ input {
   color: red;
 }
 
+#welcome {
+  background-color: #fbfbfb;
+  padding: 75px;
+}
+
 @media (max-width: 600px) {
   .form-signin {
     margin: 0px;

@@ -13,6 +13,10 @@ router.get("/login", (req, res) => {
     });
 });
 
+router.get("/welcome", (req, res) => {
+    res.render("forms/welcome")
+})
+
 // Send form
 router.post("/registration", (req,res) =>{
     console.log(req.body);
@@ -135,7 +139,9 @@ router.post("/registration", (req,res) =>{
         sgMail.send(message)
         .then(() =>{
 
-            res.send("All good! Email sent")
+            res.render("forms/welcome", {
+                values: req.body
+            })
 
         }).catch(err =>{
             console.log(`Error: ${err}`)
