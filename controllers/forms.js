@@ -90,7 +90,7 @@ router.post("/registration", (req,res) =>{
                 var upperText = /[A-Z]/;
                 var lowerCase = /[a-z]/;
                 var number = /[0-9]/;
-                var symbol = /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/;
+                var symbol = /[-!$%^&*()_@#+|~=`{}\[\]:";'<>?,.\/]/;
                 if(!upperText.test(inputPassword))
                 {
                     validPassword = false;
@@ -122,7 +122,6 @@ router.post("/registration", (req,res) =>{
     {
         const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-
        
 
         const message ={
