@@ -4,11 +4,17 @@
      
       <h1 class="h3 mb-5 font-weight-normal">Please log in</h1>
 
+      {{#if errorMessages.Email}}
+        <span class="error">{{errorMessages.Email}}</span>
+      {{/if}}
       <label for="Email" class="sr-only">Email address</label>
-      <input type="email" name="Email" id="Email" class="form-control mb-3" placeholder="Email address"  autofocus="">
+      <input type="text" name="Email" id="Email" class="form-control mb-3" placeholder="Email address"  value="{{values.Email}}">
       
+      {{#if errorMessages.Password}}
+        <span class="error">{{errorMessages.Password}}</span>
+      {{/if}}
       <label for="Password" class="sr-only">Password</label>
-      <input type="password" name="Password" id="Password" class="form-control mb-3" placeholder="Password" >
+      <input type="password" name="Password" id="Password" class="form-control mb-3" placeholder="Password" value="{{values.Password}}" >
       
       <div class="checkbox mb-3">
         <label>
