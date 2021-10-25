@@ -20,6 +20,9 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
+const dotenv = require('dotenv');
+dotenv.config({path:"./config/keys.env"});
+
 const app = express();
 
 app.engine('.hbs', exphbs({ 
@@ -85,7 +88,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8096;
+const HTTP_PORT = process.env.PORT || 8098;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {

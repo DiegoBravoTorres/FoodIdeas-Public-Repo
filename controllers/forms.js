@@ -121,7 +121,7 @@ router.post("/registration", (req,res) =>{
     if (allGood)
     {
         const sgMail = require("@sendgrid/mail");
-        sgMail.setApiKey("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");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
        
 
