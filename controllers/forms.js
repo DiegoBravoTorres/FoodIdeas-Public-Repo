@@ -94,7 +94,7 @@ router.post("/registration", (req,res) =>{
                 var upperText = /[A-Z]/;
                 var lowerCase = /[a-z]/;
                 var number = /[0-9]/;
-                var symbol = /[-!$%^&*()_@#+|~=`{}\[\]:";'<>?,.\/]/;
+                var symbol = /[^a-zA-Z0-9]/;
                 if(!upperText.test(inputPassword))
                 {
                     validPassword = false;
