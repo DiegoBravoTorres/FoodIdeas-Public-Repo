@@ -43,3 +43,9 @@ input {
     text-align: center;
   }
 }
+
+@media (max-width: 1080px) {
+  .form-signin {
+    margin: 0px 244px;
+  }
+}
