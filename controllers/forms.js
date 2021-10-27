@@ -135,7 +135,7 @@ router.post("/registration", (req,res) =>{
             html: `<p style="font-size: 15px;">Hello <strong>${firstName} ${lastName} </strong><p>
             <h2>Thank you for joining our service and welcome to Food Ideas</h2>
             <img style="width: 600px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="ideas">
-            <p style="font-size: 15px;">My name is Diego Bravo and I'll be you support provider in case you need any help. <br>
+            <p style="font-size: 17px;">My name is Diego Bravo and I'll be you support provider in case you need any help. <br>
              Please go to our <a href="https://web322-diego.herokuapp.com/">website</a> to start enjoying our service</p>`
             
             
