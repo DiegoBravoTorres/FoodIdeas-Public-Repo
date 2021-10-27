@@ -24,6 +24,7 @@ input {
 }
 
 #welcome {
+  font-family: "Montserrat", sans-serif;
   background-color: #fbfbfb;
   padding: 75px;
 }
@@ -36,5 +37,9 @@ input {
 
   .body-form {
     background-color: white;
+  }
+
+  #welcome {
+    text-align: center;
   }
 }
