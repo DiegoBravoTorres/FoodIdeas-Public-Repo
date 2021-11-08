@@ -20,7 +20,7 @@ router.get("/welcome", (req, res) => {
 
 
 // Connect to the MongoDB
-mongoose.connect("mongodb+srv://diegobt30:Blanca123%40@web322foodideas.kqdti.mongodb.net/web322foodideas?retryWrites=true&w=majority",{
+mongoose.connect(process.env.MONGOOSE_STRING,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     }
@@ -193,7 +193,7 @@ router.post("/registration", (req,res) =>{
         NewUser.save((err)=> {
                 if(err)
                     {
-                        console.log("Could not create user because" + ${err});
+                        console.log(`Could not create user because" + ${err}`);
                     }
                 else
                 {
