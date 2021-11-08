@@ -20,6 +20,8 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
+
+
 const dotenv = require('dotenv');
 dotenv.config({path:"./config/keys.env"});
 
@@ -33,18 +35,12 @@ app.engine('.hbs', exphbs({
 app.set('view engine','.hbs');
 
 // Configure Body Parser
-app.use(bodyParser.urlencoded({ extended:false}));
+app.use(express.urlencoded({ extended:false}));
 
 
 // Setup a folder that contains static resources.
 app.use(express.static("static"));
 
-
-// setup a 'route' to listen on the default url path (http://localhost)
-// app.get("/", (req, res) => {
-//     res.sendFile(path.join(__dirname, "/views/index.html"));
-
-// });
 
 
 
@@ -87,7 +83,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 8092;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {

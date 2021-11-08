@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require('mongoose');
 
 
 router.get("/registration", (req, res) => {
@@ -16,6 +17,29 @@ router.get("/login", (req, res) => {
 router.get("/welcome", (req, res) => {
     res.render("forms/welcome")
 })
+
+
+// Connect to the MongoDB
+mongoose.connect("mongodb+srv://diegobt30:Blanca123%40@web322foodideas.kqdti.mongodb.net/web322foodideas?retryWrites=true&w=majority",{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    }
+);
+
+//Define models
+
+const schema = mongoose.Schema;
+
+const usersShema = new schema ({
+    "fname" : String,
+    "lname" : String,
+    "email" : {"type": String,
+            "unique": true},
+    "password" : String
+
+});
+
+const userModel = mongoose.model("users", usersShema);
 
 // Send form
 router.post("/registration", (req,res) =>{
@@ -158,7 +182,25 @@ router.post("/registration", (req,res) =>{
 
         })
 
-      
+        // Add user to Mongoose DB
+        let NewUser = new userModel({
+                fname: firstName,
+                lname: lastName,
+                email: inputEmail,
+                password: inputPassword
+            });
+
+        NewUser.save((err)=> {
+                if(err)
+                    {
+                        console.log("Could not create user because" + ${err});
+                    }
+                else
+                {
+                    console.log("No error, user added to DB!");
+                }
+            });
+    
     }
     else{
         res.render("forms/registration",{
