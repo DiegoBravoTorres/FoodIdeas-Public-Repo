@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 const userModel = require("../models/user");
 const mongoose = require('mongoose');
@@ -32,7 +33,7 @@ mongoose.connect(process.env.MONGOOSE_STRING,{
 })
 
 
-// Send form
+// Registration Form
 router.post("/registration", (req,res) =>{
     console.log(req.body);
 
@@ -214,7 +215,10 @@ router.post("/registration", (req,res) =>{
 
 
 
-//Send form
+// ---------------------------------------------------------------------
+// Login Form
+// ---------------------------------------------------------------------
+
 router.post("/login", (req,res)=>{
 
     console.log(req.body);
@@ -237,11 +241,72 @@ router.post("/login", (req,res)=>{
             errorMessages.Password = "This field is required ↓";
         }
 
-  //  console.log(allGood);
-
     if (allGood)
     {
-        res.send("All good!")
+        //res.send("All good!")
+
+        //Match e-mail address
+        userModel.findOne({
+            email : Email
+        }).then((user) => {
+            if(user)
+            { 
+                // If we found the user
+                bcrypt.compare(Password, user.password)
+                .then((doesMatch) =>{
+
+                    if(doesMatch){
+                        console.log("Access granted ");
+                        res.redirect("/");
+
+                    }else{
+                        console.log("Password does not match with email");
+                        errorMessages.login = "Password does not match with email";
+                        // Display the page again
+                        res.render("forms/login",{
+                        title: "Page Registration",
+                        values: req.body, errorMessages
+                    });
+                    }
+
+
+                }).catch((err) =>{
+
+                    errorMessages.login = "Something went wrong";
+                    // Display the page again
+                    res.render("forms/login",{
+                        title: "Page Registration",
+                        values: req.body, errorMessages
+                    });
+
+                })
+
+            } 
+            else 
+            {
+                console.log("User not found in the DB");
+                errorMessages.login = "E-mail not registered";
+                res.render("forms/login",{
+                    title: "Page Registration",
+                    values: req.body, errorMessages
+                });
+
+            }
+
+
+        }).catch((err) =>{
+            console.log(`Could not find the user e-mail in the DB, becuase: ${err}`);
+            errorMessages.login = "Something went wrong";
+
+            // Display the page again
+            res.render("forms/login",{
+                title: "Page Registration",
+                values: req.body, errorMessages
+            });
+
+        })
+
+
     }
     else{
         res.render("forms/login",{
