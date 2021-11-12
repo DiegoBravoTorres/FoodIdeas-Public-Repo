@@ -1,6 +1,4 @@
 
-
- 
   <nav class="navbar navbar-expand-lg navbar-light" style="" id="navbar">
   <a href="#default" class="logo">  <img  src="/images/Logo.jpg" alt=""> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,12 +8,28 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="/">Home</a>
         <a class="nav-item nav-link" href="/on-the-menu">On The Menu</a>
+
+        {{#if user}}
+          {{#if userIsClerk}}
+            <a class="nav-item nav-link" href="/clerk">My Dashboard</a>
+            {{else}}
+            <a class="nav-item nav-link" href="/customer">My Dashboard</a>
+          {{/if}}
+       
+        {{else}}
         <a class="nav-item nav-link" href="/registration">Registration</a>
         <a class="nav-item nav-link" href="/login">Login</a>
-   
+        {{/if}}
+
+        
       
     </div>
   </div>
+
+        {{#if user}}
+          <p class="loginUserDesk"> Welcome <strong>  {{user.fname}} {{user.lname}} </strong></p>
+          <a class="nav-item nav-link" href="/logout">Logout</a>
+        {{/if}}
  </nav>
 </div>  
 

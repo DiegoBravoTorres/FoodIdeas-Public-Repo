@@ -18,6 +18,7 @@ const path = require("path");
 // Include ExpressJS in our project
 const express = require("express");
 const exphbs = require('express-handlebars');
+const session = require("express-session");
 //const bodyParser = require('body-parser');
 
 
@@ -27,12 +28,32 @@ dotenv.config({path:"./config/keys.env"});
 
 const app = express();
 
+// Configure Handlebars
 app.engine('.hbs', exphbs({ 
     extname: '.hbs',
     defaultLayout: "main"
 }));
 
 app.set('view engine','.hbs');
+
+
+
+// Configure express session
+
+app.use(session({
+    secret: process.env.SESSIONS_SECRET,
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use((req,res,next)=>{
+    // Set local variable "user"
+    res.locals.user = req.session.user;
+    // Set local variable "userIsClerk "
+    res.locals.userIsClerk  = req.session.userIsClerk ;
+    next();
+});
+
 
 // Configure Body Parser
 app.use(express.urlencoded({ extended:false}));
