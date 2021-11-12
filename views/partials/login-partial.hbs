@@ -3,6 +3,9 @@
     <form method="post" action="/login" class="form-signin">
      
       <h1 class="h3 mb-5 font-weight-normal">Please log in</h1>
+{{#if errorMessages.login}}
+      <span class="error">{{errorMessages.login}}</span>
+{{/if}}
 
       {{#if errorMessages.Email}}
         <span class="error">{{errorMessages.Email}}</span>
