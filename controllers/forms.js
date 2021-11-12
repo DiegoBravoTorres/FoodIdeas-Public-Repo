@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const userModel = require("../models/user");
 const mongoose = require('mongoose');
 
 
@@ -24,22 +25,12 @@ mongoose.connect(process.env.MONGOOSE_STRING,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     }
-);
+).then(() =>{
+    console.log("Connected to MongoDB");
+}).catch((err) =>{
+    console.log(`Could not connect to Mongo because: ${err}`);
+})
 
-//Define models
-
-const schema = mongoose.Schema;
-
-const usersShema = new schema ({
-    "fname" : String,
-    "lname" : String,
-    "email" : {"type": String,
-            "unique": true},
-    "password" : String
-
-});
-
-const userModel = mongoose.model("users", usersShema);
 
 // Send form
 router.post("/registration", (req,res) =>{
@@ -92,8 +83,7 @@ router.post("/registration", (req,res) =>{
 
         } else {
 
-            validEmail = inputEmail.includes("@");
-            validEmail = inputEmail.substring(inputEmail.length - 4).includes(".");
+            validEmail = (inputEmail.substring(inputEmail.length - 4).includes(".")) && (inputEmail.includes("@"));
 
             if (!validEmail)
             { 
@@ -148,6 +138,23 @@ router.post("/registration", (req,res) =>{
 
     if (allGood)
     {
+
+
+        // Add user to Mongoose DB
+        let NewUser = new userModel({
+            fname: firstName,
+            lname: lastName,
+            email: inputEmail,
+            password: inputPassword
+        });
+
+        NewUser.save()
+        .then((userSaved)=> {
+        console.log(`User ${userSaved.fname} succesfully saved`);
+        res.render("forms/welcome", {
+            values: req.body
+        });
+
         const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
        
@@ -168,9 +175,7 @@ router.post("/registration", (req,res) =>{
         sgMail.send(message)
         .then(() =>{
 
-            res.render("forms/welcome", {
-                values: req.body
-            })
+            console.log(`Mail succesfully sent`)
 
         }).catch(err =>{
             console.log(`Error: ${err}`)
@@ -179,27 +184,23 @@ router.post("/registration", (req,res) =>{
                 title: "Page Registration",
                 values: req.body, errorMessages
             });
-
         })
+        
+        }
+        ).catch((err) =>{
 
-        // Add user to Mongoose DB
-        let NewUser = new userModel({
-                fname: firstName,
-                lname: lastName,
-                email: inputEmail,
-                password: inputPassword
-            });
+        console.log(`Could not create user because ${err}`);
+        // If user could not be created ..
+        errorMessages.user = `Could not create user because the email ${inputEmail} is already in use`;
+        
+        res.render("forms/registration",{
+            title: "Page Registration",
+            values: req.body, errorMessages
+        });
 
-        NewUser.save((err)=> {
-                if(err)
-                    {
-                        console.log(`Could not create user because" + ${err}`);
-                    }
-                else
-                {
-                    console.log("No error, user added to DB!");
-                }
-            });
+    })
+
+        
     
     }
     else{

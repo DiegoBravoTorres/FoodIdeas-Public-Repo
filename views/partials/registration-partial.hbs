@@ -4,6 +4,11 @@
      
       <h1 class="h3 mb-5 font-weight-normal">Sign up</h1>
 
+        {{#if errorMessages.user}}
+        <span class="error">{{errorMessages.user}}</br></br></span>
+      {{/if}}
+
+
       {{#if errorMessages.firstName}}
         <span class="error">{{errorMessages.firstName}}</span>
       {{/if}}
