@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 const userModel = require("../models/user");
@@ -33,7 +34,10 @@ mongoose.connect(process.env.MONGOOSE_STRING,{
 })
 
 
+// ---------------------------------------------------------------------
 // Registration Form
+// ---------------------------------------------------------------------
+
 router.post("/registration", (req,res) =>{
     console.log(req.body);
 
@@ -166,7 +170,7 @@ router.post("/registration", (req,res) =>{
             subject: 'Welcome to Food Ideas',
             html: `<p style="font-size: 15px;">Hello <strong>${firstName} ${lastName} </strong><p>
             <h2>Thank you for joining our service and welcome to Food Ideas</h2>
-            <img style="width: 600px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="ideas">
+            <img style="width: 600px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="Welcome to Food Ideas">
             <p style="font-size: 17px;">My name is Diego Bravo and I'll be you support provider in case you need any help. <br>
              Please go to our <a href="https://web322-diego.herokuapp.com/">website</a> to start enjoying our service</p>`
             
@@ -222,7 +226,10 @@ router.post("/registration", (req,res) =>{
 router.post("/login", (req,res)=>{
 
     console.log(req.body);
-    const {Email, Password} =  req.body;
+    const {Email, Password,isClerk} =  req.body;
+
+   //console.log(isClerk);
+
 
     let allGood = true;
     let errorMessages = {};
@@ -257,11 +264,41 @@ router.post("/login", (req,res)=>{
 
                     if(doesMatch){
                         console.log("Access granted ");
-                        res.redirect("/");
+
+                        //Create new session
+                        req.session.user = user;
+                        req.session.userIsClerk = isClerk === "on";
+
+                        if(req.session.userIsClerk)
+                        {
+                            //User is a clerk, direct to data entry clerk dashboard
+                            console.log("User is a clerk, direct to data entry clerk dashboard");
+                            router.get("/clerk", (req, res) => {
+                                res.render("dashboards/clerk",{
+                                });
+                            });
+
+                            res.redirect("/clerk");
+
+                        }
+                            else
+                        {
+                            console.log("User is a customer, direct to customer dashboard");
+                            router.get("/customer", (req, res) => {
+                                res.render("dashboards/customer",{
+                                });
+                            });
+
+                            res.redirect("/customer");
+                            
+                        }
+
+                        console.log(`Session created for ${user.fname}`);
+                        //res.redirect("/");
 
                     }else{
                         console.log("Password does not match with email");
-                        errorMessages.login = "Password does not match with email";
+                        errorMessages.login = "Password does not match with the email";
                         // Display the page again
                         res.render("forms/login",{
                         title: "Page Registration",
@@ -315,6 +352,32 @@ router.post("/login", (req,res)=>{
         });
 
     }
+})
+
+
+// ---------------------------------------------------------------------
+// Logout 
+// ---------------------------------------------------------------------
+
+router.get("/logout",(req,res)=>{
+
+    // Destroy session on memory
+    req.session.destroy();
+
+    // Take user to login
+    res.redirect("/login")
+
+
+    // This is to avoid navigation between customers and clerk dashboards, in case the same user access both dashboards on different sessions
+   // router.get("/customer", (req, res) => {
+     //   res.status(404).send("404: Page Not Found");
+    //});
+
+    //router.get("/clerk", (req, res) => {
+     //   res.status(404).send("404: Page Not Found");
+    //});
+
+
 })
 
 module.exports = router;

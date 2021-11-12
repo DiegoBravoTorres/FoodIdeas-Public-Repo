@@ -21,9 +21,10 @@ const usersShema = new schema ({
                 default: Date.now()}
 });
 
+
+//Hash password before sending it
 usersShema.pre("save", function(next){
     let user = this;
-
     // Generate salt
     bcrypt.genSalt(10)
     .then((salt) => {
@@ -41,8 +42,6 @@ usersShema.pre("save", function(next){
     }).catch((err)=>{
         console.log(`There was an error salting: ${err}`)
     })
-
-
 });
 
 const userModel = mongoose.model("users", usersShema);
