@@ -173,8 +173,6 @@ router.post("/registration", (req,res) =>{
             <img style="width: 600px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="Welcome to Food Ideas">
             <p style="font-size: 17px;">My name is Diego Bravo and I'll be you support provider in case you need any help. <br>
              Please go to our <a href="https://web322-diego.herokuapp.com/">website</a> to start enjoying our service</p>`
-            
-            
         }
 
         sgMail.send(message)
@@ -271,26 +269,29 @@ router.post("/login", (req,res)=>{
 
                         if(req.session.userIsClerk)
                         {
-                            //User is a clerk, direct to data entry clerk dashboard
+                            // Only clerks get access to this page during the session
+
                             console.log("User is a clerk, direct to data entry clerk dashboard");
                             router.get("/clerk", (req, res) => {
+                                if(req.session.userIsClerk && req.session.user){
                                 res.render("dashboards/clerk",{
-                                });
+                                     });
+                                } else { res.send("ERROR: Page not accessible");}
                             });
-
                             res.redirect("/clerk");
-
                         }
                             else
                         {
+                            // Only customers get access to this page during the session
+
                             console.log("User is a customer, direct to customer dashboard");
                             router.get("/customer", (req, res) => {
+                                if(!req.session.userIsClerk && req.session.user){
                                 res.render("dashboards/customer",{
                                 });
+                             } else { res.send("ERROR: Page not accessible"); }
                             });
-
                             res.redirect("/customer");
-                            
                         }
 
                         console.log(`Session created for ${user.fname}`);
@@ -315,9 +316,7 @@ router.post("/login", (req,res)=>{
                         title: "Page Registration",
                         values: req.body, errorMessages
                     });
-
                 })
-
             } 
             else 
             {
@@ -327,7 +326,6 @@ router.post("/login", (req,res)=>{
                     title: "Page Registration",
                     values: req.body, errorMessages
                 });
-
             }
 
 
@@ -367,17 +365,8 @@ router.get("/logout",(req,res)=>{
     // Take user to login
     res.redirect("/login")
 
-
-    // This is to avoid navigation between customers and clerk dashboards, in case the same user access both dashboards on different sessions
-   // router.get("/customer", (req, res) => {
-     //   res.status(404).send("404: Page Not Found");
-    //});
-
-    //router.get("/clerk", (req, res) => {
-     //   res.status(404).send("404: Page Not Found");
-    //});
-
-
 })
+
+
 
 module.exports = router;
