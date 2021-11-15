@@ -63,8 +63,6 @@ app.use(express.urlencoded({ extended:false}));
 app.use(express.static("static"));
 
 
-
-
 //Import Controller
 
 const mealsController = require("./controllers/forms");
