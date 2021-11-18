@@ -44,7 +44,7 @@ input {
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1080px) and (min-width: 601px) {
   .form-signin {
     margin: 0px 244px;
   }

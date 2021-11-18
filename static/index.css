@@ -213,8 +213,9 @@ footer p {
   }
 
   .logo img {
-    width: 250px;
+    width: 230px;
     padding-right: 0px;
+    margin-right: 25px;
   }
 
   .menu-mobile {
@@ -304,7 +305,7 @@ footer p {
     text-align: left;
   }
 }
-@media (max-width: 1080px) {
+@media (max-width: 1080px) and (min-width: 601px) {
   .featuresSection {
     padding: 50px 0px;
   }
