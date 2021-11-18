@@ -15,16 +15,18 @@
             {{else}}
             <a class="nav-item nav-link" href="/customer">My Dashboard</a>
           {{/if}}
-       
-        {{else}}
-        <a class="nav-item nav-link" href="/registration">Registration</a>
-        <a class="nav-item nav-link" href="/login">Login</a>
         {{/if}}
 
         
       
     </div>
   </div>
+
+    {{#if user}}
+        {{else}}
+        <a class="nav-item nav-link" href="/registration">Registration</a>
+        <a class="nav-item nav-link" href="/login">Login</a>
+        {{/if}}
 
         {{#if user}}
           <p class="loginUserDesk"> Welcome <strong>  {{user.fname}} {{user.lname}} </strong></p>
