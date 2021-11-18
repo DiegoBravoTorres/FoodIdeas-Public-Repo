@@ -17,21 +17,27 @@
           {{/if}}
         {{/if}}
 
-        
       
     </div>
-  </div>
+ </div>
 
+ 
+
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: auto;">
     {{#if user}}
         {{else}}
         <a class="nav-item nav-link" href="/registration">Registration</a>
         <a class="nav-item nav-link" href="/login">Login</a>
         {{/if}}
 
+          </div>
+ </div>
         {{#if user}}
           <p class="loginUserDesk"> Welcome <strong>  {{user.fname}} {{user.lname}} </strong></p>
           <a class="nav-item nav-link" href="/logout">Logout</a>
-        {{/if}}
+        {{/if}} 
+  
  </nav>
 </div>  
 
