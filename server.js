@@ -19,6 +19,7 @@ const path = require("path");
 const express = require("express");
 const exphbs = require('express-handlebars');
 const session = require("express-session");
+const mongoose = require('mongoose');
 //const bodyParser = require('body-parser');
 
 
@@ -63,13 +64,27 @@ app.use(express.urlencoded({ extended:false}));
 app.use(express.static("static"));
 
 
-//Import Controller
+// Connect to the MongoDB
+mongoose.connect(process.env.MONGOOSE_STRING,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    }
+).then(() =>{
+    console.log("Connected to MongoDB");
+}).catch((err) =>{
+    console.log(`Could not connect to Mongo because: ${err}`);
+})
 
-const mealsController = require("./controllers/forms");
-const formsController = require("./controllers/meals");
+
+//Import Controllers
+
+const mealsController = require("./controllers/meals");
+const userController = require("./controllers/user");
+const loadDataController = require("./controllers/loadData");
 
 app.use("/",mealsController);
-app.use("/", formsController);
+app.use("/", userController);
+app.use("/", loadDataController);
 
 
 //Internal pages route configuration
@@ -102,7 +117,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 8084;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {

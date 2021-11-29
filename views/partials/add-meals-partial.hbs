@@ -1,0 +1,41 @@
+  <body class="text-center">
+    <div class="body-form" style="background-color: #f7f7f7;">
+    <form  method="post" action="/registration" class="form-add-meal">
+     
+      <h1 class="h3 mb-5 font-weight-normal">Add a Meal</h1>
+
+      <label for="title" class="sr-only">Title</label>
+      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish"  autofocus="" >
+      
+      <label for="ingredients" class="sr-only">Ingredients</label>
+      <input type="text" id="ingredients" name="ingredients" class="form-control mb-3" placeholder="What is included?"  autofocus="" >
+
+      <label for="description" class="sr-only">Description</label>
+      <textarea id="description" name="description" class="form-control mb-3" rows="3" placeholder="Description" autofocus="" />
+      </textarea>
+
+      <div class="row">
+    <div class="col">
+      <input type="text" class="form-control mb-3" placeholder="First name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control mb-3" placeholder="Last name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control mb-3" placeholder="Last name">
+    </div>
+  </div>
+
+
+
+      {{#if errorMessages.inputPassword}}
+        <span class="error">{{errorMessages.inputPassword}}</span>
+      {{/if}}
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="inputPassword" class="form-control mb-3" placeholder="Password" value="{{values.inputPassword}}">
+      
+      <button class="btn btn btn-primary btn-block" type="submit" style="background-color: #00008b;">Sign up today!</button>
+      <br>
+    </form>
+    </div>
+</body>

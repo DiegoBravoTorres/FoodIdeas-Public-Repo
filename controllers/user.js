@@ -22,16 +22,7 @@ router.get("/welcome", (req, res) => {
 })
 
 
-// Connect to the MongoDB
-mongoose.connect(process.env.MONGOOSE_STRING,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    }
-).then(() =>{
-    console.log("Connected to MongoDB");
-}).catch((err) =>{
-    console.log(`Could not connect to Mongo because: ${err}`);
-})
+
 
 
 // ---------------------------------------------------------------------
@@ -271,14 +262,14 @@ router.post("/login", (req,res)=>{
                         {
                             // Only clerks get access to this page during the session
 
-                            console.log("User is a clerk, direct to data entry clerk dashboard");
-                            router.get("/clerk", (req, res) => {
+                            console.log("User is a clerk, direct to load data page");
+                            /*router.get("/load-data/meal-kits", (req, res) => {
                                 if(req.session.userIsClerk && req.session.user){
                                 res.render("dashboards/clerk",{
                                      });
                                 } else { res.send("ERROR: Page not accessible");}
-                            });
-                            res.redirect("/clerk");
+                            });*/
+                            res.redirect("/load-data/meal-kits");
                         }
                             else
                         {
