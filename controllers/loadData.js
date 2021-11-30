@@ -1,4 +1,5 @@
 const mealModel = require("../models/mealsList");
+const path = require("path")
 
 const express = require("express");
 const router = express.Router();
@@ -100,6 +101,83 @@ router.get("/load-data/meal-kits", (req,res) =>{
         console.log("You are not a clerk")
     }
 })
+
+
+
+// Add/update meals
+router.post("/load-data/meal-kits", (req,res)=>{
+
+    let messages =[];
+    
+
+    console.log(req.body);
+    const {title, ingredients, description, category, price, time, calories, servings, isTop} =  req.body;
+
+    let isthisaTop = isTop === "on";
+
+
+
+     // Add user to Mongoose DB
+     let newMeal = new mealModel({
+        title: title,
+        ingredients: ingredients,
+        description: description,
+        category: category,
+        price:price,
+        cookingTime: time,
+        topMeal: isthisaTop,
+        servings: servings,
+        calories: calories
+       // imgURL:req.files.image
+    });
+
+    newMeal.save()
+    .then((mealSaved)=> {
+    console.log(`${mealSaved.title} succesfully saved`);
+
+    //Create a name and store it in the filesystem
+    let imageName = `meal-pic-${mealSaved.title}${path.parse(req.files.image.name)}`;
+    
+    //Copy the image data into the static folder
+
+    req.files.image.mv(`static/images/meals/${imageName}`).then(() =>{
+        // Update Document
+        mealModel.updateOne({
+            _id : mealSaved._id
+
+        },{
+            imgURL: imageName
+        }).then(() => {
+
+            messages.created = `${mealSaved.title} succesfully saved`;
+            res.render("meals/addMeals", {
+                values: req.body, messages
+            });
+
+
+        }).catch((err) => {
+        
+            console.log(`Could not save image because : ${err}`)
+        })
+    });
+
+   
+
+    }
+    ).catch((err) =>{
+
+    console.log(`Could not create meal because ${err}`);
+    // If user could not be created ..
+    messages.error = `Could not ${title} meal because ${err}`;    
+    res.render("meals/addMeals",{
+        values: req.body, messages
+    });
+
+})
+
+
+
+});
 
 module.exports = router;
 

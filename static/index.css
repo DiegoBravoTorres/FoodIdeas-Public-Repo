@@ -162,7 +162,7 @@ li {
   color: #999999;
   font-size: 14px;
   font-family: inherit;
-  font-weight: bold;
+
   padding: 5px 0px 5px 75px;
   cursor: pointer;
   transition: 0.2s;
@@ -188,7 +188,6 @@ footer p {
   background-color: white;
   display: block ruby;
   font-size: 15px;
-  font-weight: bold;
   text-align: left;
   padding: 0px 86px;
 }
