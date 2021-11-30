@@ -1,40 +1,70 @@
   <body class="text-center">
-    <div class="body-form" style="background-color: #f7f7f7;">
-    <form  method="post" action="/registration" class="form-add-meal">
-     
-      <h1 class="h3 mb-5 font-weight-normal">Add a Meal</h1>
+    <div class="body-meal-form">
+    <form  method="post" action="/load-data/meal-kits" class="form-add-meal" enctype="multipart/form-data">
+    
+     {{#if messages.error}}
+        <small style="color: red;">{{messages.error}}</small>
+     {{/if}}
+
+      <h1 class="h3 mb-5 font-weight-normal text-lg-left">Add a Meal</h1>
 
       <label for="title" class="sr-only">Title</label>
-      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish"  autofocus="" >
+      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish"  autofocus="" required >
+      
       
       <label for="ingredients" class="sr-only">Ingredients</label>
-      <input type="text" id="ingredients" name="ingredients" class="form-control mb-3" placeholder="What is included?"  autofocus="" >
+      <input type="text" id="ingredients" name="ingredients" class="form-control mb-3" placeholder="What is included?"  autofocus="" required>
 
       <label for="description" class="sr-only">Description</label>
-      <textarea id="description" name="description" class="form-control mb-3" rows="3" placeholder="Description" autofocus="" />
-      </textarea>
+      <textarea id="description" name="description" class="form-control mb-3" rows="3" placeholder="Description" autofocus="" required></textarea>
 
-      <div class="row">
-    <div class="col">
-      <input type="text" class="form-control mb-3" placeholder="First name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control mb-3" placeholder="Last name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control mb-3" placeholder="Last name">
+  <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="category" class="sr-only">Category</label>
+        <input type="text" id="category" name="category" class="form-control" placeholder="Category"  autofocus="" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="price" class="sr-only">Category</label>
+        <input type="text" id="price" name="price" class="form-control" placeholder="Price (CAD)"  autofocus="" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="time" class="sr-only">Category</label>
+        <input type="text" id="time" name="time" class="form-control" placeholder="Cooking Time (mins)"  autofocus="" required>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="category" class="sr-only">Calories</label>
+      <input type="text" id="calories" name="calories" class="form-control" placeholder="Calories per serving"  autofocus="" required>
+    </div>
+    <div class="col-md-3 mb-3">
+       <label for="servings" class="sr-only">Servings</label>
+      <input type="text" id="servings" name="servings" class="form-control" placeholder="Number of servings"  autofocus="" required>
+    </div>
+    <div class="col-md-6 mb-3">
 
+    <label class="custom-file-label" for="image" class="form-control">Choose an image file</label>
+    <input type="file" class="custom-file-input" name="image" id="image">
+   
+    
+    </div>
+  </div>
 
-      {{#if errorMessages.inputPassword}}
-        <span class="error">{{errorMessages.inputPassword}}</span>
-      {{/if}}
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" name="inputPassword" class="form-control mb-3" placeholder="Password" value="{{values.inputPassword}}">
+  <div class="checkbox mb-3 mt-2 text-lg-left">
+        <input type="checkbox" id="isTop" name="isTop">
+        <label for="isTop">&nbsp Is this a top meal?</label>
       
-      <button class="btn btn btn-primary btn-block" type="submit" style="background-color: #00008b;">Sign up today!</button>
+      </div>
+
+<div class="row">
+    <div class="col-md-3 mb-3 mt-4">
+     <button class="btn btn-primary form-control"  type="submit" >Add / Update Meal</button>
+     {{#if messages.created}}
+        <small>{{messages.created }}</small>
+     {{/if}}
+    </div>
+    </div>
       <br>
     </form>
     </div>

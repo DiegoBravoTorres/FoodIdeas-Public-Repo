@@ -4,7 +4,11 @@ const schema = mongoose.Schema;
 
 const mealSchema = new schema({
 
-    "title": String,
+    "title": {
+        type: String,
+        required: true,
+        unique:true
+    },
     "ingredients":String,
     "description": String,
     "price": Number,
@@ -12,7 +16,8 @@ const mealSchema = new schema({
     "servings":Number, 
     "calories": Number,
     "imgURL": String,
-    "topMeal": Boolean
+    "topMeal": Boolean,
+    "category": String
 
 });
 

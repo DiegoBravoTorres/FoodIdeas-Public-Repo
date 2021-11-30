@@ -20,6 +20,7 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const session = require("express-session");
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
 //const bodyParser = require('body-parser');
 
 
@@ -58,6 +59,9 @@ app.use((req,res,next)=>{
 
 // Configure Body Parser
 app.use(express.urlencoded({ extended:false}));
+
+// Set up File Upload
+app.use(fileUpload());
 
 
 // Setup a folder that contains static resources.
@@ -117,7 +121,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8084;
+const HTTP_PORT = process.env.PORT || 8073;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {
