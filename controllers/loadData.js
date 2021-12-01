@@ -4,9 +4,15 @@ const path = require("path")
 const express = require("express");
 const router = express.Router();
 
+
+let messageData =[];
+
 router.get("/load-data/meal-kits", (req,res) =>{
+    
+        messageData.meals =`Meal kits have already been added to the database`;
     if (req.session.user && req.session.userIsClerk)
     {
+        
         mealModel.find().count({}, (err, count) => {
             if (err) {
                 console.log("Couldn't find: " + err);
@@ -84,38 +90,66 @@ router.get("/load-data/meal-kits", (req,res) =>{
                         console.log("Couldn't insert: " + err);
                     }
                     else {
-                        console.log("Success, data was loaded!");
+                       
+                        console.log("Added meal kits to the database");
+                        messageData.meals = `Added meal kits to the database`;
                     }
                 });
             }
             else {
-                console.log("Sorry, the data is already loaded.");
+                console.log("Meal kits have already been added to the database");
+                messageData.meals = `Meal kits have already been added to the database`;
             }
         });
 
         //Once we add the data for the first time, render the view 
 
-        res.render("meals/addMeals")
+        console.log(messageData);
+
+        res.render("meals/addMeals", {
+            values: req.body, messageData
+        });
 
     }else{
         console.log("You are not a clerk")
+        res.render("meals/notAccess", {
+        });
     }
 })
 
 
 
-// Add/update meals
+// Add meals
 router.post("/load-data/meal-kits", (req,res)=>{
 
     let messages =[];
     
-
     console.log(req.body);
     const {title, ingredients, description, category, price, time, calories, servings, isTop} =  req.body;
 
     let isthisaTop = isTop === "on";
 
+   /* mealModel.findOne({
+        title: req.body.title
+    }).then(found =>{
 
+        if(found){
+
+            mealModel.updateOne({
+                _id: found._id
+            },{
+                title:
+            })
+
+        }else{
+
+
+        }
+
+
+    }).catch((err) =>{
+        messages.error = `Could not update ${title} meal because ${err}`;   
+    })*/
 
      // Add user to Mongoose DB
      let newMeal = new mealModel({
@@ -136,7 +170,7 @@ router.post("/load-data/meal-kits", (req,res)=>{
     console.log(`${mealSaved.title} succesfully saved`);
 
     //Create a name and store it in the filesystem
-    let imageName = `meal-pic-${mealSaved.title}${path.parse(req.files.image.name)}`;
+    let imageName = `meal-pic-${mealSaved.title}${path.parse(req.files.image.name).ext}`;
     
     //Copy the image data into the static folder
 
@@ -156,28 +190,74 @@ router.post("/load-data/meal-kits", (req,res)=>{
 
 
         }).catch((err) => {
-        
+            
             console.log(`Could not save image because : ${err}`)
         })
     });
 
-   
-
     }
     ).catch((err) =>{
 
-    console.log(`Could not create meal because ${err}`);
+        messages.created = `Error: ${mealSaved.title} already exist`;
     // If user could not be created ..
     messages.error = `Could not ${title} meal because ${err}`;    
     res.render("meals/addMeals",{
         values: req.body, messages
     });
 
+    })
+});
+
+//Update Meals,
+
+router.get("/load-data/update-meal-kits",(req,res)=>{
+
+    mealModel.find()
+    .exec()
+    .then((meals) =>{
+        meals = meals.map(value => value.toObject());
+
+        res.render("meals/updateMeals",{
+                meals
+        })
+    })
+    
+
+});
+
+router.post("/load-data/update-meal-kits",(req,res)=>{
+
+    console.log("Info sent to update");
+    console.log(req.body);
+
+    mealModel.updateOne({
+        _id : req.body._id
+
+    },{
+       // title: req.body.title,
+       // ingredients: req.body.ingredients,
+        description: req.body.description,
+       // category: req.body.description,
+       // price: req.body.price,
+
+
+    }).then(() => {
+
+        messages.created = `${mealSaved.title} updated succesfully`;
+        res.render("meals/updateMeals", {
+            values: req.body, messages
+        });
+
+
+    }).catch((err) => {
+        
+        console.log(`Could not save image because : ${err}`)
+    })
+
+
 })
 
 
-
-});
 
 module.exports = router;
 
