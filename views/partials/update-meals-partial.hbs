@@ -1,0 +1,117 @@
+  <script type="text/javascript">
+      function fillForm(id,title,ingredients,description,category,price,time,servings,calories,topMeal,image){
+        document.getElementById("title").value =  title;
+        document.getElementById("ingredients").value =  ingredients;
+        document.getElementById("description").value =  description;
+        document.getElementById("category").value =  category;
+        document.getElementById("price").value =  price;
+        document.getElementById("time").value =  time;
+        document.getElementById("servings").value =  servings;
+        document.getElementById("calories").value =  calories;
+        document.getElementById("id").value =  id;
+   
+        document.getElementById("formHead").innerHTML =  `Update the Meal : ${title} <br><small style="font-size: 13px;">Please edit whatever is needed</small>`;
+
+        if(topMeal)
+        {
+          document.getElementById("isTop").checked = true;
+        }else
+           {
+             $("#isTop").prop("checked", false);
+             document.getElementById("isTop").unchecked = false;
+            }
+      } 
+  
+  </script>
+  
+  <body class="text-center">
+    <div class="body-meal-form">
+    <form  class="form-add-meal" >
+   
+      <h1 class="h3 mb-5 font-weight-normal text-lg-left">Update a Meal</h1>
+      {{#each meals}}
+
+      <div class="card">
+       <div class="card-body text-left">
+       <h5 class="card-title">{{title}}</h5>
+       <p class="card-text">{{description}}</p>
+ 
+        <a href="#updateMeal" onclick="fillForm('{{_id}}','{{title}}','{{ingredients}}','{{description}}','{{category}}','{{price}}','{{cookingTime}}','{{servings}}','{{calories}}','{{topMeal}}','{{imgURL}}')" class="btn btn-primary">Update</a>
+       </div>
+      </div>
+      <br><br>
+      {{/each}}
+
+      <br>
+    </form>
+    </div>
+     <div class="body-meal-form" id="updateMeal">
+       <form  method="post" action="/load-data/update-meal-kits" class="form-add-meal" enctype="multipart/form-data">
+    
+      {{#if messages}}
+        <small style="color: red;">{{messages.error}}</small>   
+     {{/if}}
+
+      <h1 class="h3 mb-5 font-weight-normal text-lg-left" id="formHead">Update your Meal<br><small style="font-size: 13px;">Please edit whatever is needed</small></h1>
+
+       <label for="title" class="sr-only">id</label>
+      <input type="hidden" id="id" name="id" class="form-control mb-3"   autofocus="" required >
+
+      <label for="title" class="sr-only">Title</label>
+      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish to be added or updated"  autofocus="" required >
+      
+      
+      <label for="ingredients" class="sr-only">Ingredients</label>
+      <input type="text" id="ingredients" name="ingredients" class="form-control mb-3" placeholder="What is included?"  autofocus="" required>
+
+      <label for="description" class="sr-only">Description</label>
+      <textarea id="description" name="description" class="form-control mb-3" rows="3" placeholder="Description" autofocus="" required></textarea>
+
+  <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="category" class="sr-only">Category</label>
+        <input type="text" id="category" name="category" class="form-control" placeholder="Category"  autofocus="" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="price" class="sr-only">Category</label>
+        <input type="text" id="price" name="price" class="form-control" placeholder="Price (CAD)"  autofocus="" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="time" class="sr-only">Category</label>
+        <input type="text" id="time" name="time" class="form-control" placeholder="Cooking Time (mins)"  autofocus="" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="category" class="sr-only">Calories</label>
+      <input type="text" id="calories" name="calories" class="form-control" placeholder="Calories per serving"  autofocus="" required>
+    </div>
+    <div class="col-md-3 mb-3">
+       <label for="servings" class="sr-only">Servings</label>
+      <input type="text" id="servings" name="servings" class="form-control" placeholder="Number of servings"  autofocus="" required>
+    </div>
+    <div class="col-md-6 mb-3" style="z-index: 0;">
+    <input type="file" class="custom-file-input" name="image" id="image" accept=".jpg,.gif,.png,.jpeg" >
+    <label class="custom-file-label" for="image" id="image" style="text-align: left;color: #6c757d;">Choose an image file (800x400)</label>
+    </div>
+  </div>
+
+  <div class="checkbox mb-3 mt-2 text-lg-left">
+        <input type="checkbox" id="isTop" name="isTop">
+        <label for="isTop">&nbsp Is this a top meal?</label>
+      
+      </div>
+
+<div class="row">
+    <div class="col-md-3 mb-3 mt-4">
+     <button class="btn btn-primary form-control"  type="submit" >Update Meal</button>
+     {{#if messages.created}}
+        <small>{{messages.created }}</small>
+     {{/if}}
+    </div>
+    </div>
+      <br>
+    </form>
+    </div>
+</body>
