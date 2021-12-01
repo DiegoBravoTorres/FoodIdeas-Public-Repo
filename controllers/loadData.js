@@ -230,28 +230,40 @@ router.post("/load-data/update-meal-kits",(req,res)=>{
     console.log("Info sent to update");
     console.log(req.body);
 
+    
+
+    let messages =[]
+    const {id,title, ingredients, description, category, price, time, calories, servings, isTop} =  req.body;
+
     mealModel.updateOne({
-        _id : req.body._id
+        _id : id
 
     },{
-       // title: req.body.title,
-       // ingredients: req.body.ingredients,
-        description: req.body.description,
-       // category: req.body.description,
-       // price: req.body.price,
-
-
+        "$set":{"title": req.body.title,
+        "ingredients": req.body.ingredients,
+        "description": req.body.description,
+        "category":req.body.category,
+        "price": req.body.price,
+        "time": req.body.time
+    }
+         
     }).then(() => {
 
-        messages.created = `${mealSaved.title} updated succesfully`;
-        res.render("meals/updateMeals", {
-            values: req.body, messages
-        });
+        mealModel.find()
+        .exec()
+        .then((meals) =>{
+            meals = meals.map(value => value.toObject());
+    
+            messages.created = `${req.body.title} updated succesfully`;
+            res.render("meals/updateMeals", {
+                values: messages, meals
+            });
+        })
 
 
     }).catch((err) => {
         
-        console.log(`Could not save image because : ${err}`)
+        console.log(`Could not save meal because : ${err}`)
     })
 
 
