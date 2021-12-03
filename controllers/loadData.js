@@ -229,42 +229,100 @@ router.post("/load-data/update-meal-kits",(req,res)=>{
 
     console.log("Info sent to update");
     console.log(req.body);
-
+    //console.log(req.files.image);
     
 
-    let messages =[]
+    let messages =[];
     const {id,title, ingredients, description, category, price, time, calories, servings, isTop} =  req.body;
-
-    mealModel.updateOne({
-        _id : id
-
-    },{
-        "$set":{"title": req.body.title,
-        "ingredients": req.body.ingredients,
-        "description": req.body.description,
-        "category":req.body.category,
-        "price": req.body.price,
-        "time": req.body.time
-    }
-         
-    }).then(() => {
-
-        mealModel.find()
-        .exec()
-        .then((meals) =>{
-            meals = meals.map(value => value.toObject());
     
-            messages.created = `${req.body.title} updated succesfully`;
-            res.render("meals/updateMeals", {
-                values: messages, meals
-            });
+
+   
+    if(req.files){
+
+        let imageName = `meal-pic-${req.body.title}${path.parse(req.files.image.name).ext}`;
+        req.files.image.mv(`static/images/meals/${imageName}`)
+
+        mealModel.updateOne({
+            _id : id
+    
+        },{
+            "$set":{"title": req.body.title,
+            "ingredients": req.body.ingredients,
+            "description": req.body.description,
+            "category":req.body.category,
+            "price": req.body.price,
+            "time": req.body.time,
+            "calories": req.body.calories,
+            "servings": req.body.servings
+            ,"imgURL" : imageName
+    
+        }
+             
+        }).then(() => {
+    
+            mealModel.find()
+            .exec()
+            .then((meals) =>{
+                meals = meals.map(value => value.toObject());
+        
+                messages.created = `${req.body.title} updated succesfully`;
+                res.render("meals/updateMeals", {
+                    values: messages, meals
+                });
+            })
+    
+    
+        }).catch((err) => {
+            
+            console.log(`Could not save meal because : ${err}`)
         })
 
 
-    }).catch((err) => {
+    }else{
+
+        mealModel.updateOne({
+            _id : id
+    
+        },{
+            "$set":{"title": req.body.title,
+            "ingredients": req.body.ingredients,
+            "description": req.body.description,
+            "category":req.body.category,
+            "price": req.body.price,
+            "time": req.body.time,
+            "calories": req.body.calories,
+            "servings": req.body.servings        
+    
+        }
+             
+        }).then(() => {
+    
+            mealModel.find()
+            .exec()
+            .then((meals) =>{
+                meals = meals.map(value => value.toObject());
         
-        console.log(`Could not save meal because : ${err}`)
-    })
+                messages.created = `${req.body.title} updated succesfully`;
+                res.render("meals/updateMeals", {
+                    values: messages, meals
+                });
+            })
+    
+    
+        }).catch((err) => {
+            
+            console.log(`Could not save meal because : ${err}`)
+        })
+
+
+    }
+
+   
+
+
+    
+
+    
 
 
 })

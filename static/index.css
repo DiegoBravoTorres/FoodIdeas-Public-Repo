@@ -118,6 +118,18 @@ table {
   text-align: left;
   font-size: 15px;
   width: 400px;
+  height: 450px;
+  display: inline-block;
+  background-color: white;
+  margin-top: 30px;
+  box-shadow: 5px 5px 13px lightgray;
+  vertical-align: top;
+}
+
+.top-meal {
+  text-align: left;
+  font-size: 15px;
+  width: 400px;
   height: 380px;
   display: inline-block;
   background-color: white;
@@ -125,7 +137,9 @@ table {
   box-shadow: 5px 5px 13px lightgray;
   vertical-align: top;
 }
-.meal img {
+
+.meal img,
+.top-meal img {
   width: 400px;
 }
 
@@ -140,6 +154,8 @@ table {
 
 .meal-description {
   padding-left: 20px;
+  margin-bottom: 5px;
+  margin-top: px;
 }
 
 .meal-price {
@@ -261,16 +277,20 @@ footer p {
     padding: 30px 50px;
   }
 
-  .meal {
+  .meal,
+  .top-meal {
     margin-top: 25px;
     width: 300px;
     text-align: center;
   }
-  .meal img {
+
+  .meal img,
+  .top-meal img {
     width: 300px;
   }
   .meal-description {
-    padding: 10px;
+    padding: 4px;
+    margin-bottom: 0px;
   }
   .feature {
     padding-top: 40px;

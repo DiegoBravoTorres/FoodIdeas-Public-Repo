@@ -14,7 +14,16 @@
               <div class="meal">
                 <img src="/images/meals/{{imgURL}}" alt="{{title}}">
                 <p class="meal-title">{{title}}</p>
-                <p class="meal-description">{{ingredients}}</p>
+                <p class="meal-description"><small style="font-weight: bold;">What's included?</small><br>{{ingredients}}</p>
+                <div class="row">
+                  <div class="col-sm">
+                    <p class="meal-description"><small style="font-weight: bold;">Cooking Time:<br></small>{{cookingTime}} minutes</p>
+                  </div>
+                  <div class="col-sm">
+                    <p class="meal-description"><small style="font-weight: bold;">Servings:</small> <br>{{servings}}</p>
+                </div></div>
+                
+                
                 <p class="meal-price">${{price}}</p>
               </div>
             </div>
