@@ -1,4 +1,6 @@
   <body class="text-center">
+
+    
     <div class="body-meal-form">
     <form  method="post" action="/load-data/meal-kits" class="form-add-meal" enctype="multipart/form-data">
     
@@ -7,12 +9,22 @@
        
      {{/if}}
 
-      <h1 class="h3 mb-5 font-weight-normal text-lg-left">Add a Meal<br><small style="font-size: 13px;">{{messageData.meals}}</small>  {{#if messages.created}}
+      <div class="container">
+       <div class="row">
+       <div class="col-sm-6">
+       <h1 class="h3 mb-5 font-weight-normal text-lg-left">Add a Meal<br><small style="font-size: 13px;">{{messageData.meals}}</small>  {{#if messages.created}}
         <small style="font-size: 13px;">{{messages.created }}</small>
-     {{/if}}</h1>
+       {{/if}}</h1>
+       </div>
+      <div class="col-sm-6">
+      <h1 class="h3 mb-5 font-weight-normal text-lg-left" id="formHead">Update your Meal</h1>
+      </div>
+    </div>
+  </div>
+     
 
       <label for="title" class="sr-only">Title</label>
-      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish to be added or updated"  autofocus="" required >
+      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Name of the dish to be added"  autofocus="" required >
       
       
       <label for="ingredients" class="sr-only">Ingredients</label>
