@@ -190,6 +190,9 @@ router.post("/load-data/meal-kits", (req,res)=>{
 
 router.get("/load-data/update-meal-kits",(req,res)=>{
 
+    if (req.session.user && req.session.userIsClerk)
+    {
+
     mealModel.find()
     .exec()
     .then((meals) =>{
@@ -199,7 +202,12 @@ router.get("/load-data/update-meal-kits",(req,res)=>{
                 meals
         })
     })
-    
+}else{
+    console.log("You are not a clerk")
+        res.render("meals/notAccess", {
+        });
+
+}
 
 });
 
