@@ -129,28 +129,6 @@ router.post("/load-data/meal-kits", (req,res)=>{
 
     let isthisaTop = isTop === "on";
 
-   /* mealModel.findOne({
-        title: req.body.title
-    }).then(found =>{
-
-        if(found){
-
-            mealModel.updateOne({
-                _id: found._id
-            },{
-                title:
-            })
-
-        }else{
-
-
-        }
-
-
-    }).catch((err) =>{
-        messages.error = `Could not update ${title} meal because ${err}`;   
-    })*/
-
      // Add user to Mongoose DB
      let newMeal = new mealModel({
         title: title,

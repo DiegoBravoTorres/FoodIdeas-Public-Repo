@@ -27,6 +27,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+label {
+  text-align: left !important;
+}
+
 input {
   padding-bottom: 30px;
 }
