@@ -229,6 +229,8 @@ footer p {
     width: 230px;
     padding-right: 0px;
     margin-right: 25px;
+    clip: rect(0px, 60px, 100px, 0px);
+    display: none;
   }
 
   .menu-mobile {
