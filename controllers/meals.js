@@ -54,5 +54,43 @@ router.get("/on-the-menu", (req, res) => {
 
 });
 
+
+// Meal overview
+
+router.get("/on-the-menu/meal-overview/:id", (req, res) => {
+
+    const mealId = req.params.id;
+
+    mealModel.findById(mealId)
+    .exec()
+    .then((meal) => {   
+     
+        console.log(`Meal found : ${meal}`)
+       
+
+         // Send meal overview
+         res.render("meals/meal-overview", {
+           // mealInfo :meal,
+            id : meal._id,
+            img: meal.imgURL,
+            title : meal.title,
+            description : meal.description,
+            time : meal.cookingTime,
+            price : meal.price,
+            servings : meal.servings,
+            calories : meal.calories,
+           
+        });
+
+
+    });
+    
+   
+});
+
+
+
+
+
 module.exports = router;
 

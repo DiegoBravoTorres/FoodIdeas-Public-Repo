@@ -114,7 +114,8 @@ table {
   padding-bottom: 30px;
 }
 
-.meal {
+.meal,
+.top-meal {
   text-align: left;
   font-size: 15px;
   width: 400px;
@@ -124,18 +125,19 @@ table {
   margin-top: 30px;
   box-shadow: 5px 5px 13px lightgray;
   vertical-align: top;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .top-meal {
-  text-align: left;
-  font-size: 15px;
   width: 400px;
   height: 380px;
-  display: inline-block;
-  background-color: white;
-  margin-top: 30px;
   box-shadow: 5px 5px 13px lightgray;
-  vertical-align: top;
+  cursor: inherit;
+}
+
+.meal:hover {
+  transform: scale(1.01);
 }
 
 .meal img,

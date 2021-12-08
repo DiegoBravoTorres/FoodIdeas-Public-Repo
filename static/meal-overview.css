@@ -1,0 +1,31 @@
+.overview-body {
+  text-align: center;
+  margin: 30px 0px;
+  padding: 50px 300px;
+  background-color: #fdfdfd;
+  font-family: "Montserrat", sans-serif;
+}
+
+.overview-body img {
+  width: 600px;
+}
+
+.meal-description-overview {
+  padding: 0;
+}
+
+.overview-body-button {
+  margin-left: 8%;
+  text-align: center;
+  width: 600px;
+}
+
+.meal-overview-head {
+  padding-top: 40px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+.meal-overview-head h1 {
+  font-size: 30px;
+}

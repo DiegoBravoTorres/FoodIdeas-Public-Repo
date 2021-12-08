@@ -1,0 +1,27 @@
+
+
+<body>
+   <div class="meal-overview-head">
+      <h1 >Meal Description</h1>
+   </div>
+   <div class="overview-body">
+      <img src="/images/meals/{{img}}" alt="{{title}}">
+      <p class="meal-title">{{title}}</p>
+      <p class="meal-description-overview">{{description}}</p>
+      <div class="row">
+         <div class="col-sm">
+            <p class="meal-description-overview"><small style="font-weight: bold;">Cooking Time:<br></small>{{time}} minutes</p>
+         </div>
+         <div class="col-sm">
+            <p class="meal-description-overview"><small style="font-weight: bold;">Servings:</small> <br>{{servings}}</p>
+         </div>
+         <div class="col-sm">
+            <p class="meal-description-overview"><small style="font-weight: bold;">Calories per serving:</small> <br>{{calories}}<br><br></p>
+         </div>
+         <div class="overview-body-button">
+            <button class="btn btn btn-primary btn-block">Buy for only {{price}}</button>
+         </div>
+      </div>
+   </div>
+</body>
+
