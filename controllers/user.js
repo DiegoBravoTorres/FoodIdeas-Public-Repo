@@ -276,13 +276,14 @@ router.post("/login", (req,res)=>{
                             // Only customers get access to this page during the session
 
                             console.log("User is a customer, direct to customer dashboard");
-                            router.get("/customer", (req, res) => {
+                            router.get("/purchase/shopping-cart", (req, res) => {
                                 if(!req.session.userIsClerk && req.session.user){
-                                res.render("dashboards/customer",{
+                                res.render("purchase/shopping-cart",{
+ 
                                 });
                              } else { res.send("ERROR: Page not accessible"); }
                             });
-                            res.redirect("/customer");
+                           res.redirect("/purchase/shopping-cart");
                         }
 
                         console.log(`Session created for ${user.fname}`);

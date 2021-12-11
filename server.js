@@ -53,6 +53,7 @@ app.use((req,res,next)=>{
     res.locals.user = req.session.user;
     // Set local variable "userIsClerk "
     res.locals.userIsClerk  = req.session.userIsClerk ;
+   // res.locals.cart  = req.session.cart ;
     next();
 });
 

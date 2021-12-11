@@ -1,4 +1,46 @@
 <div class="textbox">
-    <h1 style="font-size: 30px;padding-bottom: 200px;">Customer Dashboard</h1>
+    <h1 style="font-size: 30px;padding-bottom: 20px;">Shopping Cart</h1>
+
+
+    {{#each meals}}
+         <div class="card">
+            <div class="card-body text-left">
+               <h5 class="card-title">{{title}}</h5>
+               <p class="card-text">{{description}}</p>
+               <a href="#updateMeal" onclick="fillForm('{{_id}}','{{title}}','{{ingredients}}','{{description}}','{{category}}','{{price}}','{{cookingTime}}','{{servings}}','{{calories}}','{{topMeal}}','{{imgURL}}')" class="btn btn-primary">Update</a>
+            </div>
+         </div>
+         <br><br>
+         {{/each}}
    
   </div>
+
+
+  
+
+
+
+{{#each mealsAdded}}
+    {{title}}sdfsdf
+   {{/each}}
+
+
+  {{#if user}}
+   {{#each meals}}
+    {{title}}dfdfdf {{meals.count}}
+   {{/each}}
+
+   {{#if meals}}
+   test
+   {{/if}}
+
+   {{#if hasMeals}}
+   test
+   {{/if}}
+
+ 
+
+   df
+  {{/if}}
+
+    {{#if cartTotal}}sdsfsdf{{/if}}
