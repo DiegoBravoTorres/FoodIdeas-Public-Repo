@@ -86,11 +86,13 @@ mongoose.connect(process.env.MONGOOSE_STRING,{
 const mealsController = require("./controllers/meals");
 const userController = require("./controllers/user");
 const loadDataController = require("./controllers/loadData");
+const shoppingController = require("./controllers/shopping");
 
 
 app.use("/",mealsController);
 app.use("/", userController);
 app.use("/", loadDataController);
+app.use("/", shoppingController);
 
 
 
@@ -124,7 +126,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Define a port to listen to requests on.
-const HTTP_PORT = process.env.PORT || 8087;
+const HTTP_PORT = process.env.PORT || 8053;
 
 // Call this function after the http server starts listening for requests.
 function onHttpStart() {
