@@ -205,9 +205,12 @@ footer p {
 #copyright-desk {
   background-color: white;
   display: block ruby;
-  font-size: 15px;
   text-align: left;
   padding: 0px 86px;
+  color: #999999;
+  font-size: 13px;
+  font-family: inherit;
+  text-align: center;
 }
 
 #copyright-mobile {
@@ -326,8 +329,10 @@ footer p {
     font-size: 12px;
     background-color: white;
     display: block ruby;
-    font-weight: bold;
-    text-align: left;
+    padding: 0px 86px;
+    color: #999999;
+    font-family: inherit;
+    text-align: center;
   }
 }
 @media (max-width: 1080px) and (min-width: 601px) {
