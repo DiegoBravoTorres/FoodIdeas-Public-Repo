@@ -110,8 +110,8 @@ router.post("/load-data/update-meal-kits",(req,res)=>{
     let messages =[];
     const {id,title, ingredients, description, category, price, time, calories, servings, isTop} =  req.body;
     
+    let isthisaTop = isTop === "on";
 
-   
     if(req.files){
 
         let imageName = `meal-pic-${req.body.title}${path.parse(req.files.image.name).ext}`;
@@ -127,6 +127,7 @@ router.post("/load-data/update-meal-kits",(req,res)=>{
             "category":req.body.category,
             "price": req.body.price,
             "time": req.body.time,
+            "topMeal": isthisaTop,
             "calories": req.body.calories,
             "servings": req.body.servings
             ,"imgURL" : imageName
@@ -164,6 +165,7 @@ router.post("/load-data/update-meal-kits",(req,res)=>{
             "description": req.body.description,
             "category":req.body.category,
             "price": req.body.price,
+            "topMeal": isthisaTop,
             "time": req.body.time,
             "calories": req.body.calories,
             "servings": req.body.servings        
