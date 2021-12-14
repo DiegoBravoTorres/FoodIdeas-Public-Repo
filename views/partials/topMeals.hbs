@@ -5,7 +5,7 @@
              {{#each meal}}
              {{#if topMeal}} 
             <div class="col-12 col-sm-6">
-              <div class="top-meal">
+              <div class="top-meal" onclick="location.href='/on-the-menu/meal-overview/{{_id}}';">
                 <img src="/images/meals/{{imgURL}}" alt="{{title}}">
                 <p class="meal-title">{{title}}</p>
                 <p class="meal-description">{{description}}</p>

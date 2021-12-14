@@ -132,11 +132,10 @@ table {
 .top-meal {
   width: 400px;
   height: 380px;
-  box-shadow: 5px 5px 13px lightgray;
-  cursor: inherit;
 }
 
-.meal:hover {
+.meal:hover,
+.top-meal:hover {
   transform: scale(1.01);
 }
 
