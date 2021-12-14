@@ -40,7 +40,24 @@
   background: white;
 }
 
-@media (max-width: 600px) {
+.orderPlaced {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+  padding: 140px 50px;
+  color: #3f5243;
+
+  background-color: rgb(251, 251, 251);
+}
+
+.orderPlaced button {
+  width: 300px;
+  align-content: center;
+  display: inline;
+}
+
+@media (max-width: 810px) {
   .shopping-cart-body {
     padding: 50px 20px;
   }

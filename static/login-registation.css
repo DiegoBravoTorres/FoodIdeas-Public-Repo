@@ -47,7 +47,7 @@ input {
   padding: 75px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 810px) {
   .form-signin {
     margin: 0px;
     padding: 0px;
@@ -71,6 +71,10 @@ input {
 @media (max-width: 1080px) and (min-width: 601px) {
   .form-signin,
   .form-add-meal {
-    margin: 0px 244px;
+    margin: 0px 50px;
+  }
+
+  .body-meal-form {
+    padding: 40px;
   }
 }
