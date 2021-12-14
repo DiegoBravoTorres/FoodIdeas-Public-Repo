@@ -33,8 +33,9 @@
          <div class="card">
             <div class="card-body text-left">
                <h5 class="card-title">{{title}}</h5>
-               <p class="card-text">{{description}}</p>
+              <p class="card-text">{{description}}</p> 
                <a href="#updateMeal" onclick="fillForm('{{_id}}','{{title}}','{{ingredients}}','{{description}}','{{category}}','{{price}}','{{cookingTime}}','{{servings}}','{{calories}}','{{topMeal}}','{{imgURL}}')" class="btn btn-primary">Update</a>
+               <a href="/load-data/delete-meal/{{_id}}" class="btn btn-secondary">Delete</a>
             </div>
          </div>
          <br><br>
@@ -42,6 +43,8 @@
          <br>
       </form>
    </div>
+
+   
    <div class="body-meal-form" id="updateMeal">
       <form  method="post" action="/load-data/update-meal-kits" class="form-add-meal" enctype="multipart/form-data">
          {{#if messages}}
