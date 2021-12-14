@@ -162,7 +162,7 @@ router.get("/customer/shopping-cart/:id", (req,res) =>{
 }
     else
     {
-        res.redirect("/on-the-menu")
+        res.redirect("/login")
     }
 });
 
@@ -234,25 +234,23 @@ router.get("/check-out",(req,res) =>{
                from : 'dbravo-torres@myseneca.ca',
                subject: 'Your order confirmation',
                html: `<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet"> 
-               <div style="font-family: 'Montserrat', sans-serif;">
+               <div style="font-family: 'Montserrat', sans-serif; text-align: center;">
                <p style="font-size: 16px;">Hello <strong>${req.session.user.fname} ${req.session.user.lname}!</strong><p>
-               <p style="font-size: 16px;">Your order has been placed for the next meals</p>
-               <table cellpadding="0" cellspacing="5" width="540" align="left" border="0">
-               <tbody>
-               <tr><td><strong>Meal</strong></td><td><strong>Qty</strong></td><td><strong>Price/Item</strong></td></tr>
+               <p style="font-size: 16px;">Your order has been placed for the next meals:</p>
                `
            }
     
              cart.forEach(cartMeal => {
-                message.html += `<tr style="font-size: 16px;"><td>${cartMeal.meal.title}</td><td>${cartMeal.qty}</td><td>${cartMeal.meal.price}</td></tr>`
+                message.html += `<p style="font-size: 16px;">${cartMeal.meal.title}<br>Qty: <strong>${cartMeal.qty}</strong><br>Price/Item:<strong> $${cartMeal.meal.price}</strong></p>`
                 
              });
 
 
-             message.html += `<tr style="font-size: 16px;"><td></td><td>Order Total:</td><td><strong>${cartTotal.toFixed(2)}</strong></td></tr> </tbody></table>
-                              <br>
+             message.html += `<hr><p style="font-size: 16px;">Order Total: <strong>$${cartTotal.toFixed(2)}</strong></p>
+                             
                               <p style="font-size: 16px;">Thank you for using Food Ideas</p>
                               <img style="width: 600px;height: 130px;" src="https://web322-diego.herokuapp.com/images/bannerHero/OntheMenu-hero-1.jpg" alt="Food Ideas Banner></div>`;
+
    
            sgMail.send(message)
            .then(() =>{
@@ -269,7 +267,10 @@ router.get("/check-out",(req,res) =>{
             req.session.cart = [];
         }
 
-        res.send(`thanks for shopping${req.session.user.fname},${req.session.user.lname}, ${req.session.user.email}`)
+        //res.send(`thanks for shopping${req.session.user.fname},${req.session.user.lname}, ${req.session.user.email}`)
+        res.render("purchase/order-placed",{
+
+        });
 
     }
 
