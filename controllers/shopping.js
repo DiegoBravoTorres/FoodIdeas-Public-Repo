@@ -173,6 +173,7 @@ router.get("/check-out",(req,res) =>{
                     }
                </style>
                <div class="main" style="text-align: center;">
+               <img style="width: 600px;height: 100px;" src="https://web322-diego.herokuapp.com/images/mail-receipt.jpg" alt="Food Ideas Receipt></div>
                <p style="font-size: 16px;">Hello <strong>${req.session.user.fname} ${req.session.user.lname}!</strong><p>
                <p style="font-size: 16px;">Your order has been placed for the next meals:</p>
                `
