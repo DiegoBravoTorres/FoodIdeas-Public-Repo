@@ -4,9 +4,6 @@ const mealModel = require("../models/mealsList");
 const express = require("express");
 const router = express.Router();
 
-console.log("Test shopping controller");
-
-
 const VIEW_NAME = "purchase/shopping-cart";
 const prepareViewModel = function(req, message) {
 
@@ -72,10 +69,10 @@ router.get("/customer/shopping-cart/:id", (req,res) =>{
         });
 
         if (found) {
-            message = "Song was already in the cart, incremented the quantity by one.";
+            message = "Meal was already in the cart, incremented the quantity by one.";
         }
         else {
-            // Song was not found in the shopping cart.  Create a new shopping
+            // Meal was not found in the shopping cart.  Create a new shopping
             // cart object and add it to the cart.
             cart.push({
                 id: mealId,
@@ -173,7 +170,7 @@ router.get("/check-out",(req,res) =>{
                     }
                </style>
                <div class="main" style="text-align: center;">
-               <img style="width: 600px;height: 97px;" src="https://web322-diego.herokuapp.com/images/mail-receipt.jpg" alt="Food Ideas Receipt">
+               <img style="width: 600px;height: 100px;" src="https://web322-diego.herokuapp.com/images/mail-receipt.jpg" alt="Food Ideas Receipt">
                <p style="font-size: 16px;">Hello <strong>${req.session.user.fname} ${req.session.user.lname}!</strong><p>
                <p style="font-size: 16px;">Your order has been placed for the next meals:</p>
                `
