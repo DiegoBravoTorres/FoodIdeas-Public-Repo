@@ -11,7 +11,7 @@
           <div class="row">
              {{#each meal}}
             <div class="col-12 col-sm-6">
-              <div class="meal" onclick="location.href='/on-the-menu/meal-overview/{{_id}}';">
+              <div class="meal">
                 <img src="/images/meals/{{imgURL}}" alt="{{title}}">
                 <p class="meal-title">{{title}}</p>
                 <p class="meal-description"><small style="font-weight: bold;">What's included?</small><br>{{ingredients}}</p>
@@ -22,10 +22,10 @@
                   <div class="col-sm">
                     <p class="meal-description"><small style="font-weight: bold;">Servings:</small> <br>{{servings}}</p>
                 </div></div>
-                
-        
                 <p class="meal-price">${{price}}</p>
+
               </div>
+               <button onclick="location.href='/customer/shopping-cart/{{_id}}';"class="btn btn-primary btn-block rounded-0">Add to Cart</button>
             </div>
             {{/each}}
           </div>

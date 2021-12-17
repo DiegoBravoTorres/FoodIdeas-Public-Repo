@@ -1,9 +1,16 @@
 
+  <script>
+    Handlebars.registerHelper('print_person', function () {
+    return user.fname + ' ' + this.fname;
+})
+  </script>
   <nav class="navbar navbar-expand-lg navbar-light" style="" id="navbar">
-  <a href="/" class="logo">  <img  src="/images/Logo.jpg" alt=""> 
+  <a href="/" class="logo"> <img  src="/images/Logo.jpg" alt="Food Ideas"> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button></a>
+  <a href="/" class="logomob"> <img  src="/images/LogoBrowser.png" alt="Food Ideas"> 
+ </a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="/">Home</a>
@@ -34,8 +41,11 @@
 
           </div>
  </div>
+ 
         {{#if user}}
-          <p class="loginUserDesk"> Welcome <strong>  {{user.fname}} {{user.lname}} </strong></p>
+       
+          <p class="loginUserDesk">Hi <strong>  {{user.fname}} {{user.lname}} </strong></p>
+          <p class="loginUserMob">Hi <strong>  {{print_person}} {{user.fname}} </strong></p>
           <a class="nav-item nav-link" href="/logout">Logout</a>
         {{/if}} 
   

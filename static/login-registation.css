@@ -41,6 +41,14 @@ input {
   color: red;
 }
 
+.loginUserMob {
+  display: none;
+}
+
+.logomob {
+  display: none;
+}
+
 #welcome {
   font-family: "Montserrat", sans-serif;
   background-color: #fbfbfb;
@@ -65,6 +73,28 @@ input {
 
   #welcome {
     text-align: center;
+  }
+
+  .loginUserDesk {
+    display: none;
+  }
+
+  .loginUserMob {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 0;
+    margin-right: 25px;
+    display: initial;
+  }
+
+  .logomob {
+    display: initial;
+  }
+
+  .logomob img {
+    width: 50px;
   }
 }
 

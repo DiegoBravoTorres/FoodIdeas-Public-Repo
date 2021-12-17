@@ -1,6 +1,5 @@
 const mealModel = require("../models/mealsList");
 
-
 const express = require("express");
 const router = express.Router();
 

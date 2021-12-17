@@ -125,18 +125,12 @@ table {
   margin-top: 30px;
   box-shadow: 5px 5px 13px lightgray;
   vertical-align: top;
-  cursor: pointer;
   transition: 0.3s;
 }
 
 .top-meal {
   width: 400px;
   height: 380px;
-}
-
-.meal:hover,
-.top-meal:hover {
-  transform: scale(1.01);
 }
 
 .meal img,
@@ -162,6 +156,13 @@ table {
 .meal-price {
   font-size: 17px;
   color: #737373;
+}
+
+.top-meals button {
+  z-index: 3000;
+  display: inline;
+  width: 400px;
+  box-shadow: 5px 5px 13px lightgray;
 }
 
 .footer-menu {
@@ -293,6 +294,11 @@ footer p {
   .meal img,
   .top-meal img {
     width: 300px;
+  }
+
+  .top-meals button {
+    width: 300px;
+    height: 60px;
   }
   .meal-description {
     padding: 4px;

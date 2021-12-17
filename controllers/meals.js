@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
         // Render the "home" view with the data
         res.render("meals/home", {
             meal,
+            userIsClerk: req.session.userIsClerk,
             title: "Home Page",    
         });
     });
