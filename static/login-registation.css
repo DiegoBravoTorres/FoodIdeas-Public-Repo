@@ -1,0 +1,80 @@
+.body-form {
+  background-color: #8adc76;
+  padding: 40px;
+}
+.body-meal-form {
+  background-color: #f7f7f7;
+  padding: 40px;
+}
+
+.form-signin {
+  margin: 0px 344px;
+  padding: 50px 50px;
+  padding-bottom: 20px;
+  background-color: white;
+  font-size: 16px;
+  line-height: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-add-meal {
+  margin: 30px 70px;
+  padding: 50px 70px;
+  padding-bottom: 20px;
+  background-color: white;
+  font-size: 16px;
+  line-height: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+
+label {
+  text-align: left !important;
+}
+
+input {
+  padding-bottom: 30px;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: bold;
+  color: red;
+}
+
+#welcome {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fbfbfb;
+  padding: 75px;
+}
+
+@media (max-width: 810px) {
+  .form-signin {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .form-add-meal {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .body-form,
+  .body-meal-form {
+    background-color: white;
+  }
+
+  #welcome {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 601px) {
+  .form-signin,
+  .form-add-meal {
+    margin: 0px 50px;
+  }
+
+  .body-meal-form {
+    padding: 40px;
+  }
+}

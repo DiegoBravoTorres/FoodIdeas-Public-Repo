@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap");
+
+.overview-body {
+  text-align: center;
+  margin: 30px 0px;
+  padding: 50px 300px;
+  background-color: #fdfdfd;
+  font-family: "Montserrat", sans-serif;
+}
+
+.overview-body img {
+  width: 600px;
+}
+
+.meal-description-overview {
+  padding: 0;
+}
+
+.overview-body-button {
+  margin-left: 8%;
+  text-align: center;
+  width: 600px;
+}
+
+.meal-overview-head {
+  padding-top: 40px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+.meal-overview-head h1 {
+  font-size: 30px;
+}
+
+@media (max-width: 600px) {
+  .overview-body {
+    padding: 50px 10px;
+  }
+
+  .overview-body img {
+    width: 300px;
+  }
+
+  .meal-overview-head h1 {
+    font-size: 23px;
+  }
+
+  .overview-body-button {
+    margin: 9%;
+    text-align: center;
+    width: 600px;
+  }
+}

@@ -1,0 +1,31 @@
+  <body class="text-center">
+    <div class="body-form">
+    <form method="post" action="/login" class="form-signin">
+     
+      <h1 class="h3 mb-5 font-weight-normal">Please log in</h1>
+     {{#if errorMessages.login}}
+      <span class="error">{{errorMessages.login}}</span>
+      {{/if}}
+
+      {{#if errorMessages.Email}}
+        <span class="error">{{errorMessages.Email}}</span>
+      {{/if}}
+      <label for="Email" class="sr-only">Email address</label>
+      <input type="text" name="Email" id="Email" class="form-control mb-3" placeholder="Email address"  value="{{values.Email}}">
+      
+      {{#if errorMessages.Password}}
+        <span class="error">{{errorMessages.Password}}</span>
+      {{/if}}
+      <label for="Password" class="sr-only">Password</label>
+      <input type="password" name="Password" id="Password" class="form-control mb-3" placeholder="Password" value="{{values.Password}}" >
+      
+      <div class="checkbox mb-3">
+
+        <input type="checkbox" id="isClerk" name="isClerk">
+        <label for="isClerk"> &nbsp I'm a clerk</label>
+      </div>
+      <button class="btn btn btn-primary btn-block" type="submit" >Log in</button>
+      <p class="mt-3 mb-3 text-muted">© Food Ideas Co 2022</p>
+    </form>
+    </div>
+</body>

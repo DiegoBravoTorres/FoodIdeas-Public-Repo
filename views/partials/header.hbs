@@ -1,0 +1,44 @@
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="" id="navbar">
+  <a href="/" class="logo">  <img  src="/images/Logo.jpg" alt=""> 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button></a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="/on-the-menu">On The Menu</a>
+
+        {{#if user}}
+          {{#if userIsClerk}}
+            <a class="nav-item nav-link" href="/load-data/meal-kits">Add a Meal</a>
+            <a class="nav-item nav-link" href="/load-data/update-meal-kits">Update a Meal</a>
+            {{else}}
+            <a class="nav-item nav-link" href="/purchase/shopping-cart">My Shopping Cart</a>
+          {{/if}}
+        {{/if}}
+
+      
+    </div>
+ </div>
+
+ 
+
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: auto;">
+    {{#if user}}
+        {{else}}
+        <a class="nav-item nav-link" href="/registration">Registration</a>
+        <a class="nav-item nav-link" href="/login">Login</a>
+        {{/if}}
+
+          </div>
+ </div>
+        {{#if user}}
+          <p class="loginUserDesk"> Welcome <strong>  {{user.fname}} {{user.lname}} </strong></p>
+          <a class="nav-item nav-link" href="/logout">Logout</a>
+        {{/if}} 
+  
+ </nav>
+</div>  
+
